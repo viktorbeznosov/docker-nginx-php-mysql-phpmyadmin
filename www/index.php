@@ -1,25 +1,28 @@
 <?php
 
 
-$dbhost = '127.0.0.1';
+$dbhost = 'mysql';
 $db = 'test';
 $dbuser = 'root';
 $dbpass = 'root';
 
-$connect = mysqli_connect($dbhost, $dbuser, $dbpass, $db) or die('No!');
 
-//try{
-//
-//
-//    $dsn = "mysql:host=$dbhost; dbname=$db";
-//    $dbh = new PDO($dsn, $dbuser, $dbpass);
-//
-//    print_r($dbh);
-//
-//}
-//catch (PDOException $e) {
-//    echo $e->getMessage();
-//}
+
+try{
+    $dsn = "mysql:host=$dbhost; dbname=$db";
+    $dbh = new PDO($dsn, $dbuser, $dbpass);
+
+    $sth = $dbh->prepare("SELECT * FROM `tasks` WHERE `id` = ?");
+    $sth->execute(array('1'));
+    $array = $sth->fetch(PDO::FETCH_ASSOC);
+    echo '<pre>';
+    print_r($array);
+    echo '</pre>';
+
+}
+catch (PDOException $e) {
+    echo $e->getMessage();
+}
 
 
 
