@@ -17,7 +17,7 @@ services:
     volumes:
       - ./www:/var/www/app
     build: ./images/php
-    working_dir: /war/www/app
+    working_dir: /var/www/app
     links:
       - mysql
 
